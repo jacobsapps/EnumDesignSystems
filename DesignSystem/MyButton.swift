@@ -7,44 +7,19 @@
 
 import SwiftUI
 
-public struct JacobButton: View {
+public struct MyButton: View {
     
-    // MARK: - Button Type -
+    // MARK: - Type -
     
-    public enum ButtonType: String, CaseIterable {
-        
+    public enum MyButtonType: String, CaseIterable {
         case primary
         case secondary
         case tertiary
-        
-        var mainColor: Color {
-            switch self {
-            case .primary: return .blue
-            case .secondary: return .cyan
-            case .tertiary: return .teal
-            }
-        }
-        
-        var detailColor: Color {
-            switch self {
-            case .primary: return .white
-            case .secondary: return .white
-            case .tertiary: return .white
-            }
-        }
     }
     
-    // MARK: - Button Style -
+    // MARK: - Size -
     
-    public enum ButtonStyle: String, CaseIterable {
-        case filled
-        case bordered
-        case text
-    }
-    
-    // MARK: - Button Size -
-    
-    public enum ButtonSize: String, CaseIterable {
+    public enum MyButtonSize: String, CaseIterable {
         
         case large
         case small
@@ -58,8 +33,8 @@ public struct JacobButton: View {
         
         var iconSize: CGFloat {
             switch self {
-            case .large: return 22
-            case .small: return 18
+            case .large: return 20
+            case .small: return 16
             }
         }
         
@@ -71,33 +46,58 @@ public struct JacobButton: View {
         }
     }
     
-    // MARK: - Button Icon -
+    // MARK: - Color -
     
-    public enum ButtonIcon {
-        case leading(_ icon: Image?)
-        case trailing(_ icon: Image?)
+    public enum MyButtonColor: String, CaseIterable {
+        
+        case `default`
+        case accent
+        case error
+        
+        var mainColor: Color {
+            switch self {
+            case .`default`: return .blue
+            case .accent: return .green.opacity(0.85)
+            case .error: return .red.opacity(0.6)
+            }
+        }
+        
+        var detailColor: Color {
+            switch self {
+            case .`default`: return .white
+            case .accent: return .white
+            case .error: return .white
+            }
+        }
+    }
+    
+    // MARK: - Icon -
+    
+    public enum MyButtonIcon {
+        case leading(_ icon: Image)
+        case trailing(_ icon: Image)
     }
     
     // MARK: - Properties -
     
-    private let type: ButtonType
-    private let style: ButtonStyle
-    private let size: ButtonSize
-    private let icon: ButtonIcon?
+    private let type: MyButtonType
+    private let color: MyButtonColor
+    private let size: MyButtonSize
+    private let icon: MyButtonIcon?
     private let title: String
     private let action: () -> Void
     
     // MARK: - Init -
     
-    public init(type: ButtonType,
-                style: ButtonStyle = .filled,
-                size: ButtonSize = .large,
-                icon: ButtonIcon? = nil,
+    public init(type: MyButtonType = .primary,
+                color: MyButtonColor = .`default`,
+                size: MyButtonSize = .large,
+                icon: MyButtonIcon? = nil,
                 title: String,
                 action: @escaping () -> Void) {
         
         self.type = type
-        self.style = style
+        self.color = color
         self.size = size
         self.icon = icon
         self.title = title
@@ -114,19 +114,19 @@ public struct JacobButton: View {
     
     @ViewBuilder
     private var buttonForStyle: some View {
-        switch style {
-        case .filled:
+        switch type {
+        case .primary:
             filledButton
-        case .bordered:
+        case .secondary:
             borderedButton
-        case .text:
+        case .tertiary:
             textButton
         }
     }
     
     private var textButton: some View {
         buttonContent
-            .foregroundColor(type.mainColor)
+            .foregroundColor(color.mainColor)
             .frame(height: size.height)
             .contentShape(Rectangle())
     }
@@ -134,31 +134,29 @@ public struct JacobButton: View {
     @ViewBuilder
     private var borderedButton: some View {
         buttonContent
-            .foregroundColor(type.mainColor)
+            .foregroundColor(color.mainColor)
             .frame(height: size.height)
-            .buttonBorder(borderColor: type.mainColor, size: size)
+            .buttonBorder(borderColor: color.mainColor, size: size)
     }
     
     @ViewBuilder
     private var filledButton: some View {
         buttonContent
-            .foregroundColor(type.detailColor)
+            .foregroundColor(color.detailColor)
             .frame(height: size.height)
-            .buttonBackground(fillColor: type.mainColor)
+            .buttonBackground(fillColor: color.mainColor)
     }
     
     private var buttonContent: some View {
-        HStack(spacing: 8) {
-            if case .leading(let image) = icon,
-               let image = image {
+        HStack(spacing: 16) {
+            if case .leading(let image) = icon {
                 iconView(for: image)
             }
             
             Text(title)
                 .applyFontStyle(for: size)
             
-            if case .trailing(let image) = icon,
-               let image = image {
+            if case .trailing(let image) = icon {
                 iconView(for: image)
             }
         }
@@ -178,25 +176,25 @@ public struct JacobButton: View {
 private extension View {
     
     @ViewBuilder
-    func applyFontStyle(for size: JacobButton.ButtonSize) -> some View {
+    func applyFontStyle(for size: MyButton.MyButtonSize) -> some View {
         switch size {
         case .large:
-            self.font(.system(size: 17, weight: .semibold))
+            font(.system(size: 17, weight: .semibold))
         case .small:
-            self.font(.system(size: 15, weight: .semibold))
+            font(.system(size: 15, weight: .semibold))
         }
     }
     
     func buttonBackground(fillColor: Color) -> some View {
-        self.frame(maxWidth: .infinity)
+        frame(maxWidth: .infinity)
             .background(
                 Capsule()
                     .fill(fillColor)
             )
     }
     
-    func buttonBorder(borderColor: Color, size: JacobButton.ButtonSize) -> some View {
-        self.frame(maxWidth: .infinity)
+    func buttonBorder(borderColor: Color, size: MyButton.MyButtonSize) -> some View {
+        frame(maxWidth: .infinity)
             .background(
                 Capsule()
                     .stroke(borderColor, lineWidth: size.borderWidth)
@@ -204,15 +202,19 @@ private extension View {
     }
 }
 
-extension JacobButton: Hashable {
+// MARK: - Hashable Conformance -
+
+/// Conforming to Hashable here so the buttons work nicely with SwiftUI's ForEach in our Button Library
+///
+extension MyButton: Hashable {
     
-    public static func == (lhs: JacobButton, rhs: JacobButton) -> Bool {
-        lhs.type == rhs.type && lhs.style == rhs.style && lhs.size == rhs.size && lhs.title == rhs.title
+    public static func == (lhs: MyButton, rhs: MyButton) -> Bool {
+        lhs.type == rhs.type && lhs.color == rhs.color && lhs.size == rhs.size && lhs.title == rhs.title
     }
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(type)
-        hasher.combine(style)
+        hasher.combine(color)
         hasher.combine(size)
         hasher.combine(title)
     }

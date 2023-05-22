@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1611DB4B2A07F0DF00CB0147 /* DesignSystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611DB4A2A07F0DF00CB0147 /* DesignSystemApp.swift */; };
-		1611DB4D2A07F0DF00CB0147 /* ComponentLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611DB4C2A07F0DF00CB0147 /* ComponentLibrary.swift */; };
+		1611DB4D2A07F0DF00CB0147 /* ButtonLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611DB4C2A07F0DF00CB0147 /* ButtonLibrary.swift */; };
 		1611DB4F2A07F0E000CB0147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1611DB4E2A07F0E000CB0147 /* Assets.xcassets */; };
 		1611DB522A07F0E000CB0147 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1611DB512A07F0E000CB0147 /* Preview Assets.xcassets */; };
-		1611DB592A07F30800CB0147 /* JacobButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611DB582A07F30800CB0147 /* JacobButton.swift */; };
+		1611DB592A07F30800CB0147 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611DB582A07F30800CB0147 /* MyButton.swift */; };
 		1611DB5B2A07F62800CB0147 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611DB5A2A07F62800CB0147 /* Icon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1611DB472A07F0DF00CB0147 /* DesignSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1611DB4A2A07F0DF00CB0147 /* DesignSystemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemApp.swift; sourceTree = "<group>"; };
-		1611DB4C2A07F0DF00CB0147 /* ComponentLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentLibrary.swift; sourceTree = "<group>"; };
+		1611DB4C2A07F0DF00CB0147 /* ButtonLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLibrary.swift; sourceTree = "<group>"; };
 		1611DB4E2A07F0E000CB0147 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1611DB512A07F0E000CB0147 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1611DB582A07F30800CB0147 /* JacobButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JacobButton.swift; sourceTree = "<group>"; };
+		1611DB582A07F30800CB0147 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		1611DB5A2A07F62800CB0147 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,8 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				1611DB4A2A07F0DF00CB0147 /* DesignSystemApp.swift */,
-				1611DB4C2A07F0DF00CB0147 /* ComponentLibrary.swift */,
-				1611DB582A07F30800CB0147 /* JacobButton.swift */,
+				1611DB4C2A07F0DF00CB0147 /* ButtonLibrary.swift */,
+				1611DB582A07F30800CB0147 /* MyButton.swift */,
 				1611DB5A2A07F62800CB0147 /* Icon.swift */,
 				1611DB4E2A07F0E000CB0147 /* Assets.xcassets */,
 				1611DB502A07F0E000CB0147 /* Preview Content */,
@@ -143,10 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1611DB4D2A07F0DF00CB0147 /* ComponentLibrary.swift in Sources */,
+				1611DB4D2A07F0DF00CB0147 /* ButtonLibrary.swift in Sources */,
 				1611DB4B2A07F0DF00CB0147 /* DesignSystemApp.swift in Sources */,
 				1611DB5B2A07F62800CB0147 /* Icon.swift in Sources */,
-				1611DB592A07F30800CB0147 /* JacobButton.swift in Sources */,
+				1611DB592A07F30800CB0147 /* MyButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
